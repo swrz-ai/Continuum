@@ -1,0 +1,248 @@
+# Copy this entire block and run in PowerShell
+$websiteCode = @'
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Continuum - Enterprise Infrastructure Monitoring</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0a0c10 0%, #1a1e2a 100%);
+            color: #d1d5db;
+            line-height: 1.6;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        .header {
+            padding: 80px 0 60px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 48px;
+            background: linear-gradient(135deg, #60a5fa, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+        .header p {
+            font-size: 20px;
+            color: #9ca3af;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 10px;
+            transition: transform 0.2s;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #60a5fa, #c084fc);
+            color: white;
+        }
+        .btn-secondary {
+            border: 1px solid #60a5fa;
+            color: #60a5fa;
+        }
+        .btn:hover { transform: translateY(-2px); }
+        
+        .features {
+            padding: 60px 0;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .feature-card {
+            background: #1a1e2a;
+            border: 1px solid #2d2f3e;
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+        }
+        .feature-card:hover {
+            border-color: #60a5fa;
+            transform: translateY(-4px);
+            transition: all 0.3s;
+        }
+        .feature-icon { font-size: 40px; margin-bottom: 20px; }
+        .feature-card h3 { color: #60a5fa; margin-bottom: 15px; }
+        
+        .pricing {
+            padding: 60px 0;
+        }
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .pricing-card {
+            background: #1a1e2a;
+            border: 1px solid #2d2f3e;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .pricing-header {
+            background: #0f1117;
+            padding: 30px;
+            text-align: center;
+        }
+        .price {
+            font-size: 36px;
+            font-weight: bold;
+            color: #60a5fa;
+            margin: 10px 0;
+        }
+        .price span { font-size: 14px; color: #9ca3af; }
+        .pricing-body { padding: 30px; }
+        .pricing-body ul { list-style: none; }
+        .pricing-body li {
+            padding: 10px 0;
+            border-bottom: 1px solid #2d2f3e;
+        }
+        .pricing-body li:last-child { border-bottom: none; }
+        
+        .footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid #2d2f3e;
+            margin-top: 60px;
+            color: #6b7280;
+        }
+        .footer a { color: #60a5fa; text-decoration: none; }
+        
+        @media (max-width: 768px) {
+            .header h1 { font-size: 32px; }
+            .header p { font-size: 16px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Continuum</h1>
+            <p>Enterprise infrastructure monitoring that's simple, affordable, and built for businesses like yours</p>
+            <div style="margin-top: 30px;">
+                <a href="#pricing" class="btn btn-primary">Get Started</a>
+                <a href="https://demo.continuum-monitor.com" class="btn btn-secondary">Live Demo</a>
+            </div>
+        </div>
+        
+        <div class="features">
+            <h2 style="text-align: center;">Why Choose Continuum?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Real-time Dashboard</h3>
+                    <p>Beautiful, auto-refreshing dashboard showing your entire infrastructure at a glance</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔔</div>
+                    <h3>Instant Alerts</h3>
+                    <p>Get notified immediately when servers go down. Never miss a critical issue.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏢</div>
+                    <h3>Multi-tenant</h3>
+                    <p>Monitor multiple clients or environments from one system with isolated dashboards</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>90% Cheaper</h3>
+                    <p>Enterprise-grade monitoring at a fraction of the cost of Datadog or New Relic</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>10-Minute Setup</h3>
+                    <p>Get monitoring up and running in minutes, not weeks</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Secure by Default</h3>
+                    <p>API key authentication, rate limiting, and audit logs built in</p>
+                </div>
+            </div>
+        </div>
+        
+        <div id="pricing" class="pricing">
+            <h2 style="text-align: center;">Simple, Transparent Pricing</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Starter</h3>
+                        <div class="price">$49<span>/month</span></div>
+                        <p>Perfect for small teams</p>
+                    </div>
+                    <div class="pricing-body">
+                        <ul>
+                            <li>✓ Up to 10 nodes</li>
+                            <li>✓ 1 tenant</li>
+                            <li>✓ Email alerts</li>
+                            <li>✓ 7-day history</li>
+                            <li>✓ Email support</li>
+                        </ul>
+                        <a href="mailto:hello@continuum-monitor.com" class="btn btn-primary" style="display: block; text-align: center;">Choose Plan</a>
+                    </div>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Professional</h3>
+                        <div class="price">$99<span>/month</span></div>
+                        <p>Most popular</p>
+                    </div>
+                    <div class="pricing-body">
+                        <ul>
+                            <li>✓ Up to 50 nodes</li>
+                            <li>✓ 3 tenants</li>
+                            <li>✓ Email & Slack alerts</li>
+                            <li>✓ 30-day history</li>
+                            <li>✓ Priority support</li>
+                        </ul>
+                        <a href="mailto:hello@continuum-monitor.com" class="btn btn-primary" style="display: block; text-align: center;">Choose Plan</a>
+                    </div>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Enterprise</h3>
+                        <div class="price">Custom</div>
+                        <p>For large organizations</p>
+                    </div>
+                    <div class="pricing-body">
+                        <ul>
+                            <li>✓ Unlimited nodes</li>
+                            <li>✓ Unlimited tenants</li>
+                            <li>✓ 24/7 support</li>
+                            <li>✓ Custom integrations</li>
+                            <li>✓ 99.9% SLA</li>
+                        </ul>
+                        <a href="mailto:hello@continuum-monitor.com" class="btn btn-primary" style="display: block; text-align: center;">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>📧 <a href="mailto:hello@continuum-monitor.com">hello@continuum-monitor.com</a> | 📞 Support: <a href="mailto:support@continuum-monitor.com">support@continuum-monitor.com</a></p>
+            <p><a href="/terms">Terms of Service</a> | <a href="/privacy">Privacy Policy</a></p>
+            <p>© 2026 Continuum. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
+'@
+
+# Save to Desktop for easy access
+$websiteCode | Out-File -FilePath "$env:USERPROFILE\Desktop\index.html" -Encoding UTF8
+
+Write-Host "Website file saved to your Desktop!" -ForegroundColor Green
+Write-Host "File: C:\Users\$env:USERNAME\Desktop\index.html" -ForegroundColor Cyan
