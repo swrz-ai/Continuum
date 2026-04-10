@@ -1,6 +1,6 @@
 # Continuum - Enterprise Infrastructure Monitoring
 
-PowerShell-native infrastructure monitoring system. Real-time dashboard, multi-tenant, 90% cheaper than Datadog.
+PowerShell-native infrastructure monitoring system. Real-time dashboard, multi-tenant, 90% cheaper than traditional enterprise solutions.
 
 ![Version](https://img.shields.io/badge/version-4.0-blue)
 ![PowerShell](https://img.shields.io/badge/PowerShell-5.1+-green)
