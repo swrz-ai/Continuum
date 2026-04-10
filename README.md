@@ -14,3 +14,11 @@ PowerShell-native infrastructure monitoring system. Real-time dashboard, multi-t
 ## Quick Start
 ```powershell
 .\Continuum_Final.ps1
+## Version 4.0 Features
+
+- ✅ Mobile responsive dashboard
+- ✅ Enhanced health check endpoint
+- ✅ 1-year data retention
+- ✅ 5-second real-time updates
+- ✅ Multi-tenant support
+- ✅ CSV/JSON/HTML export
