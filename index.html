@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Continuum - Native Windows Monitoring</title>
+    <title>Continuum Monitor - Native Windows Monitoring</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -24,6 +24,13 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 20px;
+        }
+        .header h1 span {
+            font-size: 18px;
+            display: block;
+            color: #9ca3af;
+            -webkit-text-fill-color: #9ca3af;
+            margin-top: 8px;
         }
         .header p {
             font-size: 20px;
@@ -152,6 +159,16 @@
         }
         .footer a { color: #60a5fa; text-decoration: none; }
         
+        .version-badge {
+            background: #7c3aed20;
+            color: #c084fc;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 10px;
+            display: inline-block;
+            margin-left: 8px;
+        }
+        
         @media (max-width: 768px) {
             .header h1 { font-size: 32px; }
             .header p { font-size: 16px; }
@@ -162,7 +179,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>Continuum</h1>
+            <h1>Continuum Monitor <span>Enterprise Infrastructure Monitoring</span></h1>
             <p>Native Windows monitoring. Deploys in minutes.</p>
             <div class="tech-badge">⚡ PowerShell-native architecture</div>
             <div style="margin-top: 30px;">
@@ -172,7 +189,7 @@
         </div>
         
         <div class="features">
-            <h2 class="section-title">Why Choose Continuum?</h2>
+            <h2 class="section-title">Why Choose Continuum Monitor?</h2>
             <p class="section-subtitle">Enterprise monitoring made simple, affordable, and powerful</p>
             <div class="features-grid">
                 <div class="feature-card">
@@ -181,9 +198,19 @@
                     <p>Beautiful, auto-refreshing dashboard showing your entire infrastructure at a glance</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🔔</div>
-                    <h3>Instant Alerts</h3>
-                    <p>Get notified immediately when servers go down via Email, Slack, or Discord</p>
+                    <div class="feature-icon">📈</div>
+                    <h3>Uptime Percentage</h3>
+                    <p>Per-node uptime tracking with color-coded indicators (Green/Yellow/Red)</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⏱️</div>
+                    <h3>Response Time</h3>
+                    <p>Monitor ping latency in milliseconds with speed indicators</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📉</div>
+                    <h3>Historical Graphs</h3>
+                    <p>12-hour response time and uptime trends using Chart.js</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🏢</div>
@@ -212,8 +239,13 @@
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🗄️</div>
-                    <h3>1-Year Data Retention</h3>
+                    <h3>365-Day Retention</h3>
                     <p>Automatic archiving keeps your monitoring history for a full year</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📞</div>
+                    <h3>Direct Support</h3>
+                    <p>Reach us via email or LinkedIn for assistance</p>
                 </div>
             </div>
         </div>
@@ -233,7 +265,7 @@
                             <li>✓ Up to 20 nodes</li>
                             <li>✓ 1 tenant</li>
                             <li>✓ Real-time dashboard</li>
-                            <li>✓ Email alerts</li>
+                            <li>✓ Uptime & Response Time</li>
                             <li>✓ Community support (GitHub)</li>
                         </ul>
                         <a href="https://github.com/swrz-ai/Continuum" class="btn btn-primary">Download Free</a>
@@ -249,9 +281,8 @@
                         <ul>
                             <li>✓ Up to 50 nodes</li>
                             <li>✓ 1 tenant</li>
-                            <li>✓ Email alerts</li>
-                            <li>✓ 7-day history</li>
                             <li>✓ Email support</li>
+                            <li>✓ 7-day history</li>
                         </ul>
                         <a href="mailto:hello@continuum-monitor.com" class="btn btn-primary">Choose Plan</a>
                     </div>
@@ -266,9 +297,9 @@
                         <ul>
                             <li>✓ Unlimited nodes</li>
                             <li>✓ Up to 10 tenants</li>
-                            <li>✓ Email & Slack alerts</li>
-                            <li>✓ 30-day history</li>
                             <li>✓ Priority support</li>
+                            <li>✓ 30-day history</li>
+                            <li>✓ Historical Graphs</li>
                         </ul>
                         <a href="mailto:hello@continuum-monitor.com" class="btn btn-primary">Choose Plan</a>
                     </div>
@@ -295,8 +326,8 @@
         
         <div class="footer">
             <p>📧 <a href="mailto:hello@continuum-monitor.com">hello@continuum-monitor.com</a> | Support: <a href="mailto:support@continuum-monitor.com">support@continuum-monitor.com</a></p>
-            <p><a href="https://sites.google.com/view/continuum-portal/home">Client Portal</a> | <a href="https://github.com/swrz-ai/Continuum">GitHub</a> | <a href="terms.html">Terms</a> | <a href="privacy.html">Privacy</a></p>
-            <p>Enterprise infrastructure monitoring | © 2026 Continuum. All rights reserved.</p>
+            <p><a href="https://sites.google.com/view/continuum-portal/home">Client Portal</a> | <a href="https://github.com/swrz-ai/Continuum">GitHub</a> | <a href="https://www.linkedin.com/in/waseem-raza-b99752400/">LinkedIn</a> | <a href="terms.html">Terms</a> | <a href="privacy.html">Privacy</a></p>
+            <p>Enterprise infrastructure monitoring | © 2026 Continuum Monitor. All rights reserved. | v4.0</p>
         </div>
     </div>
 </body>
