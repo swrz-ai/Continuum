@@ -5,6 +5,7 @@
 [![Version](https://img.shields.io/badge/version-4.0-blue.svg)](https://github.com/swrz-ai/Continuum)
 [![PowerShell](https://img.shields.io/badge/PowerShell-5.1+-green.svg)](https://github.com/swrz-ai/Continuum)
 [![License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/swrz-ai/Continuum)
+[![Discord](https://img.shields.io/badge/Discord-Join-5865F2.svg)](https://discord.gg/YOUR_INVITE_CODE)
 
 Native Windows monitoring. Deploys in minutes. **90% lower cost** than traditional enterprise solutions.
 
@@ -51,11 +52,12 @@ Native Windows monitoring. Deploys in minutes. **90% lower cost** than tradition
 
 ### 📞 Support & Contact
 
-| Feature | Description |
-|---------|-------------|
-| **Email Support** | Contact us at hello@continuum-monitor.com |
-| **LinkedIn** | Professional messaging via LinkedIn |
-| **GitHub Issues** | Technical support and bug reports |
+| Channel | Contact |
+|---------|---------|
+| **Email** | hello@continuum-monitor.com |
+| **LinkedIn** | [Waseem Raza](https://www.linkedin.com/in/waseem-raza-b99752400/) |
+| **Discord** | [Join our Discord Server](https://discord.gg/YOUR_INVITE_CODE) |
+| **GitHub Issues** | [Technical support](https://github.com/swrz-ai/Continuum/issues) |
 
 ---
 
