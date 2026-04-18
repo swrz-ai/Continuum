@@ -1,4 +1,4 @@
-# Continuum Monitor
+# Continuum-Monitor
 
 **Enterprise Infrastructure Monitoring** | *v4.0*
 
