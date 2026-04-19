@@ -8,7 +8,7 @@
 [![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS-blue.svg)](https://github.com/swrz-ai/Continuum-Monitor)
 [![Discord](https://img.shields.io/badge/Discord-Join-5865F2.svg)](https://discord.gg/YOUR_INVITE_CODE)
 
-Monitor anything, anywhere. Deploys in minutes. **90% lower cost** than traditional enterprise solutions like Datadog, Dynatrace, and SolarWinds.
+Monitor anything, anywhere. Deploys in minutes. **90% lower cost** than traditional enterprise solutions.
 
 ⚡ **PowerShell-native** | 🐧 **Cross-Platform** | 📊 **Interactive Graphs** | 💬 **Slack & Discord** | 🤖 **AI-Ready**
 
