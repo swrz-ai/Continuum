@@ -8,7 +8,7 @@
 [![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS-blue.svg)](https://github.com/swrz-ai/Continuum-Monitor)
 [![Discord](https://img.shields.io/badge/Discord-Join-5865F2.svg)](https://discord.gg/YOUR_INVITE_CODE)
 
-Monitor anything, anywhere. Deploys in minutes. **90% lower cost** than traditional enterprise solutions.
+Monitor anything, anywhere. Deploys in minutes. **90% lower cost** than traditional enterprise solutions like Datadog, Dynatrace, and SolarWinds.
 
 ⚡ **PowerShell-native** | 🐧 **Cross-Platform** | 📊 **Interactive Graphs** | 💬 **Slack & Discord** | 🤖 **AI-Ready**
 
@@ -16,15 +16,15 @@ Monitor anything, anywhere. Deploys in minutes. **90% lower cost** than traditio
 
 ## 🤖 AI-Ready Infrastructure Monitoring
 
-Continuum Monitor is built for the AI era:
+Continuum Monitor is built for the modern era:
 
-- ✅ **Node-based pricing** — No per-seat costs, insulated from AI-driven headcount changes
-- ✅ **System of Record** — Immutable audit logs and 365-day retention for AI training data
+- ✅ **Node-based pricing** — No per-seat costs, aligned with infrastructure, not headcount
+- ✅ **System of Record** — Immutable audit logs and 365-day retention for compliance and AI training
 - ✅ **API-first ready** — Easy integration with AI agents and automation workflows
-- ✅ **Self-hosted** — Your monitoring data stays on your infrastructure for AI processing
+- ✅ **Self-hosted** — Your monitoring data stays on your infrastructure
 - ✅ **90% lower cost** — Compared to traditional enterprise solutions
 
-> *"Continuum Monitor monitors the infrastructure that powers your AI."*
+> *"Continuum Monitor monitors the infrastructure that powers your business."*
 
 ---
 
@@ -54,6 +54,15 @@ Continuum Monitor is built for the AI era:
 ---
 
 ## 🚀 Quick Start
+
+### Requirements
+
+- Windows 10/11 or Windows Server 2016+
+- PowerShell 5.1+ (built-in)
+- Administrator access (recommended)
+- No additional dependencies
+
+### Installation
 
 ```powershell
 # Download and run
