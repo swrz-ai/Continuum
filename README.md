@@ -23,7 +23,7 @@ Continuum Monitor is built differently:
 | **System of Record** | Immutable audit logs and 365-day retention for compliance and AI training |
 | **API-first ready** | Easy integration with AI agents and automation workflows |
 | **Self-hosted** | Your monitoring data stays on your infrastructure |
-| **95% lower cost** | Compare: Datadog ($180/host/year) vs Continuum ($99/month unlimited hosts) |
+| **95% lower cost** | Compare: traditional infrastructure solutions vs Continuum ($99/month unlimited hosts) |
 
 > *"Continuum Monitor monitors the infrastructure that powers your business."*
 
