@@ -34,7 +34,7 @@ Continuum Monitor is built for the modern era:
 |----------|----------|
 | **Monitoring** | Windows, Linux, macOS, Ports (SSH, MySQL), HTTP/HTTPS, SSL Certificates |
 | **Analytics** | Uptime %, Response Time (ms), Interactive Graphs (Chart.js) |
-| **Graph Controls** | 🖱️ Scroll to zoom | Drag to pan | Double-click to reset |
+| **Graph Controls** | 🖱️ Scroll to zoom | 👆 Drag to pan | 🔁 Double-click to reset | 🔍 Hover for exact values |
 | **Data** | 365-day retention, Archive viewer, Audit logging |
 | **Alerts** | Console, Slack, Discord (webhooks) |
 | **Security** | SHA-256 hashing, Rate limiting (60/min), Audit trail |
