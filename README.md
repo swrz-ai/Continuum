@@ -87,5 +87,5 @@ Continuum Monitor is built differently:
 # Download and run
 powershell -ExecutionPolicy Bypass -File Continuum_Monitor_v5.0.ps1
 
-# Access dashboard (replace with your server IP)
+# Access dashboard (replace with your server's IP for remote access)
 http://localhost:18503/dashboard?tenant=Demo&key=demo-123
