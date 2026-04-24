@@ -1,4 +1,4 @@
-# Complete working GitHub HTML - matches Google Site
+# Complete GitHub HTML with proper structure
 @'
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +12,7 @@
         .container{max-width:1200px;margin:0 auto;padding:0 20px}
         .header{text-align:center;padding:60px 0 40px}
         .header h1{font-size:48px;background:linear-gradient(135deg,#60a5fa,#c084fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:15px}
-        .header h1 span{font-size:18px;display:block;color:#9ca3af;margin-top:8px}
+        .header h1 span{font-size:18px;display:block;color:#9ca3af;margin-top:8px;-webkit-text-fill-color:#9ca3af}
         .header p{font-size:20px;color:#9ca3af;max-width:600px;margin:0 auto}
         .tech-badge{display:inline-block;padding:8px 16px;background:#2d2f3e;border-radius:30px;font-size:12px;margin-top:20px}
         .security-badges{display:flex;justify-content:center;gap:12px;margin:25px 0;flex-wrap:wrap}
@@ -24,7 +24,7 @@
         .section-title{text-align:center;font-size:32px;font-weight:600;margin:60px 0 20px}
         .section-subtitle{text-align:center;color:#9ca3af;margin-bottom:40px}
         .features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px;margin:40px 0}
-        .feature-card{background:#1a1e2a;border:1px solid #2d2f3e;border-radius:16px;padding:25px;text-align:center;transition:all 0.2s}
+        .feature-card{background:#1a1e2a;border:1px solid #2d2f3e;border-radius:16px;padding:25px;text-align:center}
         .feature-card:hover{transform:translateY(-5px);border-color:#60a5fa}
         .feature-icon{font-size:40px;margin-bottom:15px}
         .feature-card h3{color:#60a5fa;margin-bottom:10px}
@@ -48,9 +48,8 @@
         .footer{text-align:center;padding:40px 0;border-top:1px solid #2d2f3e;margin-top:40px}
         .footer-links{margin:15px 0}
         .footer-links a{color:#60a5fa;text-decoration:none;margin:0 8px}
-        .footer-links a:hover{text-decoration:underline}
         .disclaimer{background:#0f1722;padding:15px;margin-top:20px;border-radius:8px;font-size:11px;color:#9ca3af;text-align:left}
-        @media(max-width:768px){.header h1{font-size:32px}.pricing-grid{grid-template-columns:1fr}.security-badges{gap:8px}.sec-badge{font-size:10px;padding:4px 10px}}
+        @media(max-width:768px){.header h1{font-size:32px}.pricing-grid{grid-template-columns:1fr}.sec-badge{font-size:10px;padding:4px 10px}}
     </style>
 </head>
 <body>
@@ -112,44 +111,28 @@
     <h2 id="pricing" class="section-title">Simple, Transparent Pricing</h2>
     <p class="section-subtitle">Choose the plan that fits your needs</p>
     <div class="pricing-grid">
-        <!-- Open Source -->
         <div class="pricing-card">
             <div class="pricing-header"><h3>Open Source</h3><div class="price">$0<span>/month</span></div><p>Free forever. No credit card.</p></div>
             <div class="pricing-body"><ul><li>✓ Up to 20 nodes</li><li>✓ 1 tenant</li><li>✓ Real-time dashboard</li><li>✓ Interactive graphs</li><li>✓ Community support (GitHub)</li></ul><a href="https://github.com/swrz-ai/Continuum-Monitor" class="btn btn-primary">Download Free</a></div>
         </div>
-        <!-- Starter -->
         <div class="pricing-card">
             <div class="pricing-header"><h3>Starter</h3><div class="price">$49<span>/month</span></div><p>Perfect for small teams</p></div>
             <div class="pricing-body"><ul><li>✓ Up to 50 nodes</li><li>✓ 1 tenant</li><li>✓ Email support</li><li>✓ 7-day history</li></ul><a href="mailto:hello@continuum-monitor.com" class="btn btn-primary">Choose Plan</a></div>
         </div>
-        <!-- Professional -->
         <div class="pricing-card">
             <div class="pricing-header"><h3>Professional</h3><div class="price">$99<span>/month</span></div><p>Most popular</p><div class="free-badge">🎁 First month FREE</div></div>
             <div class="pricing-body">
-                <ul>
-                    <li>✓ Unlimited nodes</li>
-                    <li>✓ Up to 10 tenants</li>
-                    <li>✓ Priority support</li>
-                    <li>✓ 30-day history</li>
-                    <li>✓ Slack & Discord Alerts</li>
-                    <li>✓ Interactive Graphs</li>
-                    <li>✓ Port & SSL Monitoring</li>
-                    <li>✓ IP Whitelisting</li>
-                    <li>✓ HTTPS Ready</li>
-                    <li>✓ Audit Logging</li>
-                </ul>
+                <ul><li>✓ Unlimited nodes</li><li>✓ Up to 10 tenants</li><li>✓ Priority support</li><li>✓ 30-day history</li><li>✓ Slack & Discord Alerts</li><li>✓ Interactive Graphs</li><li>✓ Port & SSL Monitoring</li><li>✓ IP Whitelisting</li><li>✓ HTTPS Ready</li><li>✓ Audit Logging</li></ul>
                 <div class="industrial-badge">➕ Industrial IoT Add-on: +$99/month</div>
                 <a href="mailto:hello@continuum-monitor.com" class="btn btn-primary">Choose Plan</a>
             </div>
         </div>
-        <!-- Enterprise -->
         <div class="pricing-card">
             <div class="pricing-header"><h3>Enterprise</h3><div class="price">Custom</div><p>For large organizations</p></div>
             <div class="pricing-body"><ul><li>✓ Unlimited nodes</li><li>✓ Unlimited tenants</li><li>✓ 24/7 support</li><li>✓ Custom integrations</li><li>✓ 99.9% SLA</li><li>✓ White-label options</li><li>✓ Dedicated security review</li><li>✓ <strong>Industrial IoT Included</strong></li></ul><a href="mailto:hello@continuum-monitor.com" class="btn btn-primary">Contact Us</a></div>
         </div>
     </div>
 
-    <!-- Security Note -->
     <div class="security-note">
         🔒 <strong>All Professional and Enterprise plans include:</strong> IP whitelisting, HTTPS support, rate limiting (60/min), audit logging, and SHA-256 encryption.
     </div>
@@ -164,8 +147,8 @@
             <a href="https://sites.google.com/view/continuum-portal/home">Client Portal</a> |
             <a href="https://github.com/swrz-ai/Continuum-Monitor">GitHub</a> |
             <a href="https://www.linkedin.com/in/waseem-raza-b99752400/">LinkedIn</a> |
-            <a href="https://discord.gg/YOUR_INVITE_CODE">Discord</a> |
-            <a href="https://continuum-monitor.slack.com/">Slack</a> |
+            <a href="#">Discord</a> |
+            <a href="#">Slack</a> |
             <a href="terms.html">Terms</a> |
             <a href="privacy.html">Privacy</a>
         </div>
@@ -181,5 +164,5 @@
 </html>
 '@ | Out-File -FilePath "C:\Users\Administrator\Continuum\index.html" -Encoding UTF8
 
-Write-Host "✅ Fixed GitHub HTML created!" -ForegroundColor Green
+Write-Host "✅ GitHub HTML file created with complete proper structure!" -ForegroundColor Green
 Write-Host "📁 Location: C:\Users\Administrator\Continuum\index.html" -ForegroundColor Cyan
