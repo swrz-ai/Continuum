@@ -1,4 +1,4 @@
-# Create GitHub Pages HTML file
+# Corrected index.html with accurate pricing
 @'
 <!DOCTYPE html>
 <html lang="en">
@@ -205,6 +205,15 @@
             font-size: 12px;
             font-weight: bold;
         }
+        .industrial-badge {
+            background: #c084fc20;
+            color: #c084fc;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            display: inline-block;
+            margin-top: 8px;
+        }
         .pricing-body {
             padding: 30px;
         }
@@ -346,21 +355,43 @@
             <h2 class="section-title">Simple, Transparent Pricing</h2>
             <p class="section-subtitle">Choose the plan that fits your needs</p>
             <div class="pricing-grid">
+                <!-- Open Source Card -->
                 <div class="pricing-card">
                     <div class="pricing-header"><h3>Open Source</h3><div class="price">$0<span>/month</span></div><p>Free forever. No credit card.</p></div>
                     <div class="pricing-body"><ul><li>✓ Up to 20 nodes</li><li>✓ 1 tenant</li><li>✓ Real-time dashboard</li><li>✓ Interactive graphs</li><li>✓ Community support (GitHub)</li></ul><a href="https://github.com/swrz-ai/Continuum-Monitor" class="btn btn-primary">Download Free</a></div>
                 </div>
+                
+                <!-- Starter Card -->
                 <div class="pricing-card">
                     <div class="pricing-header"><h3>Starter</h3><div class="price">$49<span>/month</span></div><p>Perfect for small teams</p></div>
                     <div class="pricing-body"><ul><li>✓ Up to 50 nodes</li><li>✓ 1 tenant</li><li>✓ Email support</li><li>✓ 7-day history</li></ul><a href="mailto:hello@continuum-monitor.com" class="btn btn-primary">Choose Plan</a></div>
                 </div>
+                
+                <!-- Professional Card -->
                 <div class="pricing-card">
                     <div class="pricing-header"><h3>Professional</h3><div class="price">$99<span>/month</span></div><p>Most popular</p><div class="free-badge">🎁 First month FREE</div></div>
-                    <div class="pricing-body"><ul><li>✓ Unlimited nodes</li><li>✓ Up to 10 tenants</li><li>✓ Priority support</li><li>✓ 30-day history</li><li>✓ Slack & Discord Alerts</li><li>✓ Interactive Graphs</li><li>✓ Port & SSL Monitoring</li><li>✓ IP Whitelisting</li><li>✓ HTTPS Ready</li><li>✓ Audit Logging</li><li>✓ Industrial IoT Add-on Available (+$99/month)</li></ul><a href="mailto:hello@continuum-monitor.com" class="btn btn-primary">Choose Plan</a></div>
+                    <div class="pricing-body">
+                        <ul>
+                            <li>✓ Unlimited nodes</li>
+                            <li>✓ Up to 10 tenants</li>
+                            <li>✓ Priority support</li>
+                            <li>✓ 30-day history</li>
+                            <li>✓ Slack & Discord Alerts</li>
+                            <li>✓ Interactive Graphs</li>
+                            <li>✓ Port & SSL Monitoring</li>
+                            <li>✓ IP Whitelisting</li>
+                            <li>✓ HTTPS Ready</li>
+                            <li>✓ Audit Logging</li>
+                        </ul>
+                        <div class="industrial-badge">➕ Industrial IoT Add-on: +$99/month</div>
+                        <a href="mailto:hello@continuum-monitor.com" class="btn btn-primary">Choose Plan</a>
+                    </div>
                 </div>
+                
+                <!-- Enterprise Card -->
                 <div class="pricing-card">
                     <div class="pricing-header"><h3>Enterprise</h3><div class="price">Custom</div><p>For large organizations</p></div>
-                    <div class="pricing-body"><ul><li>✓ Unlimited nodes</li><li>✓ Unlimited tenants</li><li>✓ 24/7 support</li><li>✓ Custom integrations</li><li>✓ 99.9% SLA</li><li>✓ White-label options</li><li>✓ Dedicated security review</li></ul><a href="mailto:hello@continuum-monitor.com" class="btn btn-primary">Contact Us</a></div>
+                    <div class="pricing-body"><ul><li>✓ Unlimited nodes</li><li>✓ Unlimited tenants</li><li>✓ 24/7 support</li><li>✓ Custom integrations</li><li>✓ 99.9% SLA</li><li>✓ White-label options</li><li>✓ Dedicated security review</li><li>✓ Industrial IoT included</li></ul><a href="mailto:hello@continuum-monitor.com" class="btn btn-primary">Contact Us</a></div>
                 </div>
             </div>
             <div class="pricing-security-note">🔒 <strong>All Professional and Enterprise plans include:</strong> IP whitelisting, HTTPS support, rate limiting (60/min), audit logging, and SHA-256 encryption. <a href="#security">Learn more about security →</a></div>
@@ -377,4 +408,4 @@
 </html>
 '@ | Out-File -FilePath "C:\Users\Administrator\Continuum\index.html" -Encoding UTF8
 
-Write-Host "✅ GitHub HTML file created at: C:\Users\Administrator\Continuum\index.html" -ForegroundColor Green
+Write-Host "✅ GitHub HTML file updated with correct pricing!" -ForegroundColor Green
