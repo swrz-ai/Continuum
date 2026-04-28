@@ -1,6 +1,6 @@
 # ============================================
 # CONTINUUM MONITOR v5.0 - FINAL PRODUCTION VERSION
-# Features: Interactive Graphs | Security | Industrial IoT | Multi-tenant
+# Features: Interactive Graphs | Security | Industrial IoT (Modbus TCP) | Multi-tenant
 # ============================================
 
 $Port = 18503
@@ -9,6 +9,12 @@ $RetentionDays = 365
 $AuditLog = "C:\Users\Administrator\Continuum\audit.log"
 $ArchiveDir = "C:\Users\Administrator\Continuum\archives"
 $HistoryFile = "C:\Users\Administrator\Continuum\history.json"
+
+# ============================================
+# FEATURE FLAGS
+# ============================================
+$EnableModbus = $true   # Set to $true to enable Industrial IoT (PLC, sensors, SCADA)
+$EnableMQTT = $false    # Set to $true to enable MQTT broker connection
 
 # ============================================
 # SECURITY CONFIGURATION
@@ -71,6 +77,105 @@ $Tenants = @{
             "GitHub SSL" = "ssl:github.com"
         }
     }
+}
+
+# ============================================
+# MODBUS TCP INTEGRATION (Industrial IoT)
+# ============================================
+
+if ($EnableModbus) {
+    $global:ModbusNodes = @{}
+    
+    function Get-ModbusRegister {
+        param($DeviceIP, $RegisterAddress, $Port = 502)
+        
+        try {
+            # Try to read via Python modbus script
+            $result = python -c "
+import sys
+sys.path.append('C:\Users\Administrator\Continuum')
+try:
+    from modbus_monitor import read_register
+    print(read_register('$DeviceIP', $RegisterAddress, $Port))
+except:
+    print('N/A')
+" 2>$null
+            if (-not $result) { return "N/A" }
+            return $result.Trim()
+        }
+        catch {
+            return "N/A"
+        }
+    }
+    
+    function Add-ModbusNode {
+        param($NodeName, $DeviceIP, $RegisterAddress, $Port = 502, $Description = "")
+        
+        $global:ModbusNodes[$NodeName] = @{
+            IP = $DeviceIP
+            Register = $RegisterAddress
+            Port = $Port
+            Description = $Description
+            Value = "N/A"
+            Status = "Unknown"
+            LastUpdate = $null
+        }
+        Write-Host " Added Modbus node: $NodeName ($DeviceIP:$Port/$RegisterAddress)" -ForegroundColor Cyan
+    }
+    
+    function Update-ModbusNodes {
+        foreach ($node in $global:ModbusNodes.Keys) {
+            try {
+                $value = Get-ModbusRegister -DeviceIP $global:ModbusNodes[$node].IP -RegisterAddress $global:ModbusNodes[$node].Register -Port $global:ModbusNodes[$node].Port
+                $global:ModbusNodes[$node].Value = $value
+                $global:ModbusNodes[$node].LastUpdate = Get-Date -Format "HH:mm:ss"
+                $global:ModbusNodes[$node].Status = if ($value -ne "N/A" -and $value -ne "") { "Healthy" } else { "Warning" }
+            }
+            catch {
+                $global:ModbusNodes[$node].Status = "Error"
+                $global:ModbusNodes[$node].Value = "N/A"
+            }
+        }
+    }
+    
+    function Get-ModbusDashboardHTML {
+        if ($global:ModbusNodes.Count -eq 0) { return "" }
+        
+        $html = '<div style="background:#1a1e2a;border-radius:16px;padding:20px;margin:20px 0;border-left:4px solid #c084fc">
+            <h3 style="color:#c084fc"> Industrial IoT (Modbus TCP)</h3>
+            <table style="width:100%;border-collapse:collapse">
+                <thead><tr style="background:#0f1117"><th>Device</th><th>IP:Port</th><th>Register</th><th>Value</th><th>Status</th><th>Last Check</th></tr></thead>
+                <tbody>'
+        
+        foreach ($node in $global:ModbusNodes.Keys) {
+            $info = $global:ModbusNodes[$node]
+            $statusColor = switch ($info.Status) {
+                "Healthy" { "#4ade80" }
+                "Warning" { "#fbbf24" }
+                default { "#f87171" }
+            }
+            $html += "<tr>
+                <td><strong>$node</strong></td>
+                <td><code>$($info.IP):$($info.Port)</code></td>
+                <td>$($info.Register)</td>
+                <td style='font-family:monospace'>$($info.Value)</td>
+                <td style='color:$statusColor'>$($info.Status)</td>
+                <td>$($info.LastUpdate)</td>
+            </tr>"
+        }
+        
+        $html += '</tbody></table></div>'
+        return $html
+    }
+    
+    # Initialize default Modbus nodes (replace with your actual devices)
+    Add-ModbusNode -NodeName "PLC_Main" -DeviceIP "192.168.1.100" -RegisterAddress 40001 -Description "Main PLC"
+    Add-ModbusNode -NodeName "Flow_Meter_1" -DeviceIP "192.168.1.101" -RegisterAddress 30001 -Description "Water Flow"
+    Add-ModbusNode -NodeName "Temperature_Sensor" -DeviceIP "192.168.1.102" -RegisterAddress 30002 -Description "Temp Sensor"
+    
+    Write-Host " Modbus Industrial IoT Integration ENABLED" -ForegroundColor Green
+} else {
+    Write-Host " Modbus Industrial IoT Integration DISABLED" -ForegroundColor Yellow
 }
 
 # ============================================
@@ -205,7 +310,7 @@ $psThread = [powershell]::Create()
 $psThread.Runspace = $runspace
 
 $monitorScript = {
-    param($Data, $Tenants, $HistData, $HistoryFile, $ArchiveDir, $RetentionDays, $SlackUrl, $DiscordUrl)
+    param($Data, $Tenants, $HistData, $HistoryFile, $ArchiveDir, $RetentionDays, $SlackUrl, $DiscordUrl, $EnableModbusFlag)
     
     $lastArchiveDate = (Get-Date).Date
     $historyCounter = 0
@@ -248,6 +353,11 @@ $monitorScript = {
             }
         }
         
+        # Update Modbus nodes (Industrial IoT)
+        if ($EnableModbusFlag) {
+            Update-ModbusNodes
+        }
+        
         if ($historyCounter -ge 12) {
             $saveData = @{}
             foreach ($t in $HistData.Keys) {
@@ -270,7 +380,7 @@ $monitorScript = {
     }
 }
 
-$psThread.AddScript($monitorScript).AddArgument($NodeData).AddArgument($Tenants).AddArgument($HistoricalData).AddArgument($HistoryFile).AddArgument($ArchiveDir).AddArgument($RetentionDays).AddArgument($SlackWebhookUrl).AddArgument($DiscordWebhookUrl).BeginInvoke()
+$psThread.AddScript($monitorScript).AddArgument($NodeData).AddArgument($Tenants).AddArgument($HistoricalData).AddArgument($HistoryFile).AddArgument($ArchiveDir).AddArgument($RetentionDays).AddArgument($SlackWebhookUrl).AddArgument($DiscordWebhookUrl).AddArgument($EnableModbus).BeginInvoke()
 
 # ============================================
 # HTTP LISTENER
@@ -285,7 +395,7 @@ Write-Host "====================================================================
 Write-Host "      CONTINUUM MONITOR v5.0 - FINAL PRODUCTION VERSION" -ForegroundColor Green
 Write-Host "================================================================================" -ForegroundColor Green
 Write-Host "Interactive Graphs: ENABLED (Chart.js + Zoom + Double-Click Reset)" -ForegroundColor Cyan
-Write-Host "Industrial IoT: READY (Modbus TCP Support)" -ForegroundColor Cyan
+Write-Host "Industrial IoT: $(if($EnableModbus){'ENABLED (Modbus TCP)'}else{'DISABLED'})" -ForegroundColor Cyan
 Write-Host "Security: IP Whitelisting | HTTPS Ready | Rate Limiting | Audit Logs" -ForegroundColor Cyan
 Write-Host "Slack: $(if($SlackWebhookUrl){'ENABLED'}else{'DISABLED'})" -ForegroundColor $(if($SlackWebhookUrl){'Green'}else{'Yellow'})
 Write-Host "Discord: $(if($DiscordWebhookUrl){'ENABLED'}else{'DISABLED'})" -ForegroundColor $(if($DiscordWebhookUrl){'Green'}else{'Yellow'})
@@ -348,6 +458,9 @@ function Get-DashboardPage {
     }
     $historyJsonString = ($historyJson | ConvertTo-Json -Depth 10 -Compress) -replace '"', '\"'
     
+    # Get Modbus HTML if enabled
+    $modbusHtml = if ($EnableModbus) { Get-ModbusDashboardHTML } else { "" }
+    
     $html = @"
 <!DOCTYPE html>
 <html>
@@ -402,6 +515,8 @@ function Get-DashboardPage {
         <div class='stat-card'><div class='stat-number error'>$error</div><div>Error</div></div>
         <div class='stat-card'><div class='stat-number checking'>$checking</div><div>Checking</div></div>
     </div>
+    
+    $modbusHtml
     
     <div class='charts-container'>
         <div class='chart-card'>
@@ -482,7 +597,7 @@ function Get-DashboardPage {
         };
         
         if (responseDatasets.length > 0) {
-            new Chart(responseCtx, {
+            const responseChart = new Chart(responseCtx, {
                 type: 'line', data: { labels: labels.slice(-60), datasets: responseDatasets },
                 options: { responsive: true, maintainAspectRatio: true, plugins: { zoom: zoomOptions, tooltip: { mode: 'index' } }, scales: { y: { title: { display: true, text: 'ms' } } } }
             });
@@ -490,7 +605,7 @@ function Get-DashboardPage {
         }
         
         if (uptimeDatasets.length > 0) {
-            new Chart(uptimeCtx, {
+            const uptimeChart = new Chart(uptimeCtx, {
                 type: 'line', data: { labels: labels.slice(-60), datasets: uptimeDatasets },
                 options: { responsive: true, maintainAspectRatio: true, plugins: { zoom: zoomOptions, tooltip: { mode: 'index' } }, scales: { y: { min: 0, max: 100, title: { display: true, text: '%' } } } }
             });
@@ -521,6 +636,7 @@ function Get-HealthPage {
         tenants = $Tenants.Count
         totalNodes = ($Tenants.Values.Nodes.Keys | Measure-Object).Count
         retentionDays = $RetentionDays
+        modbusEnabled = $EnableModbus
         features = @("Interactive Graphs", "Port Monitoring", "SSL Certificates", "Slack & Discord", "Industrial IoT", "IP Whitelisting", "Multi-tenant", "365-Day Retention")
     }
 }
