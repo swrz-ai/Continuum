@@ -90,7 +90,6 @@ if ($EnableModbus) {
         param($DeviceIP, $RegisterAddress, $Port = 502)
         
         try {
-            # Try to read via Python modbus script
             $result = python -c "
 import sys
 sys.path.append('C:\Users\Administrator\Continuum')
@@ -120,7 +119,7 @@ except:
             Status = "Unknown"
             LastUpdate = $null
         }
-        Write-Host " Added Modbus node: $NodeName ($DeviceIP:$Port/$RegisterAddress)" -ForegroundColor Cyan
+        Write-Host " Added Modbus node: $NodeName (${DeviceIP}:${Port}/${RegisterAddress})" -ForegroundColor Cyan
     }
     
     function Update-ModbusNodes {
@@ -168,7 +167,6 @@ except:
         return $html
     }
     
-    # Initialize default Modbus nodes (replace with your actual devices)
     Add-ModbusNode -NodeName "PLC_Main" -DeviceIP "192.168.1.100" -RegisterAddress 40001 -Description "Main PLC"
     Add-ModbusNode -NodeName "Flow_Meter_1" -DeviceIP "192.168.1.101" -RegisterAddress 30001 -Description "Water Flow"
     Add-ModbusNode -NodeName "Temperature_Sensor" -DeviceIP "192.168.1.102" -RegisterAddress 30002 -Description "Temp Sensor"
@@ -197,7 +195,6 @@ foreach ($tenant in $Tenants.Keys) {
             UptimePercent = 100
             ResponseTime = 0
         }
-        # Initialize historical data for graphs
         $points = @()
         for ($i = 60; $i -ge 0; $i--) {
             $points += @{
@@ -353,7 +350,6 @@ $monitorScript = {
             }
         }
         
-        # Update Modbus nodes (Industrial IoT)
         if ($EnableModbusFlag) {
             Update-ModbusNodes
         }
@@ -458,7 +454,6 @@ function Get-DashboardPage {
     }
     $historyJsonString = ($historyJson | ConvertTo-Json -Depth 10 -Compress) -replace '"', '\"'
     
-    # Get Modbus HTML if enabled
     $modbusHtml = if ($EnableModbus) { Get-ModbusDashboardHTML } else { "" }
     
     $html = @"
@@ -537,7 +532,14 @@ function Get-DashboardPage {
         $info = $data[$node]
         $target = $Tenants[$tenant].Nodes[$node]
         $responseDisplay = if ($info.ResponseTime -eq 0) { "N/A" } elseif ($info.ResponseTime -ge 3000) { "Timeout" } else { "$($info.ResponseTime)ms" }
-        $html += "<tr><td><strong>$node</strong></td><td><code>$target</code></td><td class='status-$($info.Status)'>$($info.Status)</td><td>$responseDisplay</td><td>$($info.UptimePercent)%</td><td>$($info.LastUpdate)</td></tr>"
+        $html += "<tr>
+            <td><strong>$node</strong></td>
+            <td><code>$target</code></td>
+            <td class='status-$($info.Status)'>$($info.Status)</td>
+            <td>$responseDisplay</span></td>
+            <td>$($info.UptimePercent)%</span></td>
+            <td>$($info.LastUpdate)</span></td>
+        </tr>"
     }
     $html += @"
         </tbody>
