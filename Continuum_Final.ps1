@@ -3,7 +3,7 @@
 # Focus: Industrial IoT (Modbus TCP) | 500 Nodes
 # ============================================
 
-$Port = 18504
+$Port = 18507
 $PageSize = 30
 $UpdateInterval = 5
 $GoAgentPath = "C:\Users\Administrator\Continuum\GoAgent\goagent.exe"
