@@ -51,20 +51,12 @@ Continuum Monitor is built differently:
 | **Interactive Graphs** | Chart.js with zoom, pan, and double-click reset |
 | **Data Retention** | 365-day automatic archiving with auto-delete |
 
-### 🖱️ Interactive Graph Controls
-| Action | Result |
-|--------|--------|
-| 🖱️ **Mouse wheel** | Zoom in/out on time range |
-| 👆 **Click and drag** | Pan left/right across timeline |
-| 🔁 **Double-click** | Reset to full 12-hour view |
-| 🔍 **Hover** | See exact values at any point |
+
 
 ### 🔔 Alerts & Notifications
 | Channel | Support |
 |---------|---------|
 | **Console** | Real-time status changes |
-| **Slack** | Webhook integration |
-| **Discord** | Webhook integration |
 | **Email** | Coming in v5.1 |
 
 ---
@@ -92,9 +84,11 @@ Monitor industrial equipment alongside your IT infrastructure:
 - 📡 **SNMP** - Industrial routers, power monitors, network devices
 - 🏭 **Factory floor monitoring** - SCADA integration
 
-**Quick Start:**
+## Quick Start
+
 ```powershell
-# Download industrial extension
-git clone https://github.com/swrz-ai/Continuum-Monitor
-cd Continuum-Monitor
-pwsh Continuum_Industrial.ps1
+# Download the stable IoT version
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/swrz-ai/Continuum-Monitor/main/Continuum_IoT_Stable.ps1" -OutFile "Continuum_Monitor.ps1"
+
+# Run it
+powershell -ExecutionPolicy Bypass -File "Continuum_Monitor.ps1"
